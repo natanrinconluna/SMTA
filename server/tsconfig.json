@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    // File layout
+    "rootDir": "src",
+    "outDir": "dist",
+
+    // Module / env
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "types": ["node"],
+
+    // Output
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Type safety
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Interop & features
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    // IMPORTANT: allow ESM-style imports in CJS output
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src"]
+}

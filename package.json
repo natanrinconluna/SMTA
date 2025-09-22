@@ -1,0 +1,30 @@
+{
+  "name": "smta-pern",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+ "scripts": {
+    "dev": "concurrently -n API,WEB -c blue,magenta \"npm --workspace server run dev\" \"npm --workspace client run dev\"",
+
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down -v",
+
+    "prisma:deploy": "npm --workspace server run prisma:deploy",
+
+    "build": "npm --workspace client run build && npm --workspace server run build",
+    "start:prod": "node server/dist/index.js",
+
+    "up": "npm run db:up && npm run prisma:deploy && npm run build && npm run start:prod",
+
+    "lint": "npm --workspace client run lint",
+    "format": "prettier --write ."
+  }
+,
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "editorconfig": "^1.0.4",
+    "prettier": "^3.3.3"
+  }
+}

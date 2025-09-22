@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  veteran
+  admin
+}
+
+enum ResourceKind {
+  va_benefit
+  job
+  mental_health
+}
+
+model User {
+  id        String      @id @default(cuid())
+  email     String      @unique
+  password  String
+  role      UserRole    @default(veteran)
+  profile   Profile?
+  ForumPost ForumPost[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([email])
+}
+
+model Profile {
+  id             String       @id @default(cuid())
+  userId         String       @unique
+  branch         String?
+  rank           String?
+  yearsOfService Int?
+  mos            String?
+  resumeItems    ResumeItem[]
+  User           User         @relation(fields: [userId], references: [id])
+}
+
+model ResumeItem {
+  id        String    @id @default(cuid())
+  profileId String
+  title     String
+  bullets   String[]
+  from      DateTime?
+  to        DateTime?
+  Profile   Profile   @relation(fields: [profileId], references: [id])
+}
+
+model Resource {
+  id        String       @id @default(cuid())
+  kind      ResourceKind
+  title     String
+  url       String
+  tags      String[]
+  createdAt DateTime     @default(now())
+}
+
+model ForumPost {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  body      String
+  createdAt DateTime @default(now())
+  User      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}

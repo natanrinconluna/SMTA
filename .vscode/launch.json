@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+      { "name": "Dev (API+WEB)", "configurations": ["API", "WEB"] }
+    ],
+    "configurations": [
+      {
+        "name": "API",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/server",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "dev"]
+      },
+      {
+        "name": "WEB",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/client",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "dev"],
+        "port": 5173
+      }
+    ]
+  }
+  

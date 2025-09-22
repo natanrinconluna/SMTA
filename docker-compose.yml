@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: smta
+      POSTGRES_PASSWORD: smta_dev
+      POSTGRES_DB: smta
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com   # <- changed
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports: ["5050:80"]
+    depends_on: [db]
+
+volumes:
+  pgdata:
