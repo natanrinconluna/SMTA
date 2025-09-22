@@ -1,7 +1,7 @@
 # Service Member Transition Assistant (SMTA) – PERN Skeleton
 
 A minimal **PERN** stack for the Service Member Transition Assistant (SMTA).  
-This repo gives you a secure, production-style baseline with one-command local run, JWT auth, and a modern React client.
+This repo gives a secure, production-style baseline with one-command local run, JWT auth, and a modern React client.
 
 ## Stack
 
